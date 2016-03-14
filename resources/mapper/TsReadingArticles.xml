@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingup.onlinetest.dao.TsReadingArticleDAO">
+
+    <!-- 数据表映射关系 -->
+    <resultMap id="TsReadingArticleTableMap" type="myTsReadingArticle">
+        <result property="id" column="id" />
+        <result property="subjectName" column="subject_name" />
+        <result property="articleNum" column="article_num" />
+        <result property="articleTitle" column="article_title" />
+        <result property="articleContent" column="article_content" />
+        <result property="articleChContent" column="article_ch_content" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <!-- sql语句片段变量 -->
+    <sql id="tableCols">
+        subject_name,
+        article_num,
+        article_title,
+        article_content,
+        article_ch_content,
+        create_time
+    </sql>
+
+    <!-- 操作语句部分 -->
+    <insert id="add" keyProperty="id">
+        insert into ts_reading_articles(<include refid="tableCols" /> )
+        values(
+        #{subjectName},
+        #{articleNum},
+        #{articleTitle},
+        #{articleContent},
+        #{articleChContent},
+        now()
+        )
+    </insert>
+
+    <update id="update">
+        update ts_reading_articles
+        <set>
+            <if test="subjectName != null and subjectName != ''">
+                subject_name = #{subjectName},
+            </if>
+            <if test="articleNum != null and articleNum != ''">
+                article_num = #{articleNum},
+            </if>
+            <if test="articleTitle != null and articleTitle > 0">
+                article_title = #{articleTitle},
+            </if>
+            <if test="articleContent != null and articleContent > 0">
+                article_content = #{articleContent},
+            </if>
+            <if test="articleChContent != null and articleChContent > 0">
+                article_ch_content = #{articleChContent},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>

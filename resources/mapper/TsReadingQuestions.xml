@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dingup.onlinetest.dao.TsReadingQuestionDAO">
+
+    <!-- 数据表映射关系 -->
+    <resultMap id="TsReadingQuestionTableMap" type="myTsReadingQuestion">
+        <result property="id" column="id" />
+        <result property="subjectName" column="subject_name" />
+        <result property="articleNum" column="article_num" />
+        <result property="questionNum" column="question_num" />
+        <result property="paragraphNum" column="paragraph_num" />
+        <result property="questionXml" column="question_xml" typeHandler="com.dingup.onlinetest.dao.handler.ReadingQuestionXmlHandler" />
+        <result property="createTime" column="create_time" />
+    </resultMap>
+
+    <!-- sql语句片段变量 -->
+    <sql id="tableCols">
+        subject_name,
+        article_num,
+        question_num,
+        paragraph_num,
+        question_xml,
+        create_time
+    </sql>
+
+    <!-- 操作语句部分 -->
+    <insert id="add" keyProperty="id">
+        insert into ts_reading_articles(<include refid="tableCols" /> )
+        values(
+        #{subjectName},
+        #{articleNum},
+        #{questionNum},
+        #{paragraphNum},
+        #{questionXml},
+        now()
+        )
+    </insert>
+
+    <update id="update">
+        update ts_reading_articles
+        <set>
+            <if test="subjectName != null and subjectName != ''">
+                subject_name = #{subjectName},
+            </if>
+            <if test="articleNum != null and articleNum != ''">
+                article_num = #{articleNum},
+            </if>
+            <if test="questionNum != null and questionNum > 0">
+                question_num = #{questionNum},
+            </if>
+            <if test="paragraphNum != null and paragraphNum > 0">
+                paragraph_num = #{paragraphNum},
+            </if>
+            <if test="questionXml != null and questionXml > 0">
+                question_xml = #{questionXml},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>

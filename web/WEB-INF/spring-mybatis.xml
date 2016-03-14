@@ -6,31 +6,31 @@
     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
     <!-- dataSource定义 -->
-    <!--<bean id="dataSourceChaoZhan" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
-          <!--p:driverClassName="com.mysql.jdbc.Driver"-->
-          <!--p:url="jdbc:mysql://123.57.163.18:3306/chaozhan_xiaxian?useUnicode=true&amp;characterEncoding=UTF-8"-->
-          <!--p:username="ChaoZhan_User001"-->
-          <!--p:password="MynetXiaXian_100Days"-->
-          <!--p:initialSize="1"-->
-          <!--p:maxIdle="2"-->
-          <!--p:minIdle="1"/>-->
+    <bean id="ds_dingup_online_test" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://123.57.163.18:3306/dingup_online_test?useUnicode=true&amp;characterEncoding=UTF-8"
+          p:username="onlinetestuser"
+          p:password="DingupOnlineTest_user160303"
+          p:initialSize="1"
+          p:maxIdle="2"
+          p:minIdle="1"/>
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
-    <!--<bean id="sqlSessionFactory"-->
-          <!--class="org.mybatis.spring.SqlSessionFactoryBean"-->
-          <!--p:dataSource-ref="dataSourceChaoZhan"-->
-          <!--p:configLocation="classpath:conf/mybatis-config.xml"-->
-          <!--p:mapperLocations="classpath:mapper/*.xml"/>-->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="ds_dingup_online_test"
+          p:configLocation="classpath:conf/mybatis-config.xml"
+          p:mapperLocations="classpath:mapper/*.xml"/>
 
     <!-- spring与mybatis整合配置，扫描所有dao -->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"-->
-          <!--p:basePackage="com.aliyun.chaozhan.dao"-->
-          <!--p:sqlSessionFactoryBeanName="sqlSessionFactory"/>-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="com.dingup.onlinetest.dao"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
 
-    <!--&lt;!&ndash; 对数据源进行事务管理 &ndash;&gt;-->
-    <!--<bean id="transactionManager"-->
-          <!--class="org.springframework.jdbc.datasource.DataSourceTransactionManager"-->
-          <!--p:dataSource-ref="dataSourceChaoZhan"/>-->
+    <!-- 对数据源进行事务管理 -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="ds_dingup_online_test"/>
 
 </beans>

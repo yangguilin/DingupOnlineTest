@@ -6,7 +6,10 @@
 
     <!-- 命名空间 -->
     <typeAliases>
-        <!--<typeAlias type="com.aliyun.chaozhan.bean.SysUser" alias="mySysUserType"></typeAlias>-->
+        <typeAlias type="com.dingup.onlinetest.bean.TsReadingArticle" alias="myTsReadingArticle"></typeAlias>
+        <typeAlias type="com.dingup.onlinetest.bean.TsReadingQuestion" alias="myTsReadingQuestion"></typeAlias>
+        <typeAlias type="com.dingup.onlinetest.enums.ReadingQuestionTypeEnum" alias="myReadingQuestionTypeEnum"></typeAlias>
+        <typeAlias type="com.dingup.onlinetest.bean.ReadingQuestionXml" alias="myReadingQuestionXml"></typeAlias>
         <!--<typeAlias type="com.aliyun.chaozhan.bean.OriginalUser" alias="myOriginalUserType"></typeAlias>-->
         <!--<typeAlias type="com.aliyun.chaozhan.bean.CallResult" alias="myCallResultType"></typeAlias>-->
         <!--<typeAlias type="com.aliyun.chaozhan.enums.SysUserRoleEnum" alias="mySysUserRoleEnumType"></typeAlias>-->
@@ -16,7 +19,8 @@
 
     <typeHandlers>
         <!--这里注册jdbc和class的映射,并保证会调用相应的handler来执行,需要在table.xml中的resultMap中设定相应的jdbcType和javaType-->
-        <!--<typeHandler handler="com.aliyun.chaozhan.dao.handler.CustomTimeStampHandler" javaType="java.util.Date" jdbcType="VARCHAR" />-->
+        <typeHandler handler="com.dingup.onlinetest.dao.handler.ReadingQuestionTypeEnumHandler" javaType="myReadingQuestionTypeEnum" jdbcType="VARCHAR" />
+        <typeHandler handler="com.dingup.onlinetest.dao.handler.ReadingQuestionXmlHandler" javaType="myReadingQuestionXml" jdbcType="VARCHAR" />
         <!--或者不在这里注册,直接在resultMap的result条目中填写handlerType也可以-->
         <!--<typeHandler handler="com.aliyun.chaozhan.dao.handler.SysUserRoleEnumHandler" javaType="mySysUserRoleEnumType" jdbcType="INTEGER" />-->
         <!--<typeHandler handler="com.aliyun.chaozhan.dao.handler.CallResultEnumHandler"-->
