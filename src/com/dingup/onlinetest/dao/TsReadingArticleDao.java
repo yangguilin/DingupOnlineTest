@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * Created by yanggavin on 16/3/10.
  */
@@ -18,4 +20,8 @@ public interface TsReadingArticleDAO {
     @Select("SELECT * FROM ts_reading_articles WHERE subject_name=#{0} AND article_num=#{1}")
     @ResultMap("TsReadingArticleTableMap")
     TsReadingArticle get(String subjectName, int articleNum);
+
+    @Select("SELECT * FROM ts_reading_articles WHERE subject_name=#{0}")
+    @ResultMap("TsReadingArticleTableMap")
+    List<TsReadingArticle> getList(String subjectName);
 }
