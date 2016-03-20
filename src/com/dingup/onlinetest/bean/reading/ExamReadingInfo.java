@@ -1,4 +1,4 @@
-package com.dingup.onlinetest.bean;
+package com.dingup.onlinetest.bean.reading;
 
 import java.util.Map;
 

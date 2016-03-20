@@ -1,5 +1,6 @@
 package com.dingup.onlinetest.bean;
 
+import com.dingup.onlinetest.bean.reading.ExamReadingInfo;
 import com.dingup.onlinetest.enums.ExamProjectTypeEnum;
 import com.dingup.onlinetest.enums.ExamTypeEnum;
 

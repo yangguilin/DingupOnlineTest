@@ -1,6 +1,6 @@
 package com.dingup.onlinetest.util;
 
-import com.dingup.onlinetest.bean.ReadingQuestionXml;
+import com.dingup.onlinetest.bean.reading.ReadingQuestionXml;
 import com.dingup.onlinetest.enums.ReadingQuestionTypeEnum;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -27,11 +27,15 @@ public class XmlUtil {
                 Element titleEle = root.element("title");
                 Element typeEle = root.element("type");
                 Element answerEle = root.element("answer");
+                Element tipEle = root.element("tip");
+                Element explEle = root.element("expl");
                 Element optionsEle = root.element("options");
                 if (titleEle != null
                         && typeEle != null
                         && answerEle != null
                         && !answerEle.getText().isEmpty()
+                        && tipEle != null
+                        && explEle != null
                         && optionsEle != null
                         && optionsEle.elements().size() > 0){
 
@@ -39,10 +43,14 @@ public class XmlUtil {
                     ret.setTitle(titleEle.getText());
                     ret.setType(Enum.valueOf(ReadingQuestionTypeEnum.class, typeEle.getText().toUpperCase()));
                     ret.setAnswer(Arrays.asList(answerEle.getText()));
-                    ret.setOptions(getOptionList(optionsEle.elements()));
+                    ret.setTip(tipEle.getText());
+                    ret.setExpl(explEle.getText());
+                    if (optionsEle != null) {
+                        ret.setOptions(getOptionList(optionsEle.elements()));
+                    }
                 }
             } catch (Exception e) {
-
+                ret = null;
             }
         }
         return ret;

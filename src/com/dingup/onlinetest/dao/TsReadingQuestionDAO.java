@@ -1,6 +1,6 @@
 package com.dingup.onlinetest.dao;
 
-import com.dingup.onlinetest.bean.TsReadingQuestion;
+import com.dingup.onlinetest.bean.reading.TsReadingQuestion;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
@@ -19,5 +19,9 @@ public interface TsReadingQuestionDAO {
 
     @Select("SELECT * FROM ts_reading_questions WHERE subject_name=#{0} and article_num=#{1}")
     @ResultMap("TsReadingQuestionTableMap")
-    List<TsReadingQuestion> getQuestions(String subjectName, int articleNum);
+    List<TsReadingQuestion> getQuestions(String subjectName, Integer articleNum);
+
+    @Select("SELECT * FROM ts_reading_questions WHERE subject_name=#{0} AND article_num=#{1} AND question_num=#{2}")
+    @ResultMap("TsReadingQuestionTableMap")
+    TsReadingQuestion getQuestion(String subjectName, Integer articleNum, Integer questionNum);
 }

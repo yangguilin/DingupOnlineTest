@@ -1,6 +1,6 @@
 package com.dingup.onlinetest.dao.handler;
 
-import com.dingup.onlinetest.bean.ReadingQuestionXml;
+import com.dingup.onlinetest.bean.reading.ReadingQuestionXml;
 import com.dingup.onlinetest.util.XmlUtil;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;

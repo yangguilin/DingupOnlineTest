@@ -8,7 +8,8 @@ public enum ReadingQuestionTypeEnum {
     LIGHT("light", "高亮显示"),
     INSERT("insert", "断句插入"),
     TABLE("table", "多选题"),
-    MULTIPLE("multiple", "多选题");
+    MULTIPLE("multiple", "多选题"),
+    SUMMARY("summary", "总结题");
 
     private final String code;
     private final String description;

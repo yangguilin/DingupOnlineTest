@@ -1,7 +1,7 @@
 package com.dingup.onlinetest.controller;
 
-import com.dingup.onlinetest.bean.TsReadingArticle;
-import com.dingup.onlinetest.bean.TsReadingQuestion;
+import com.dingup.onlinetest.bean.reading.TsReadingArticle;
+import com.dingup.onlinetest.bean.reading.TsReadingQuestion;
 import com.dingup.onlinetest.dao.TsReadingArticleDAO;
 import com.dingup.onlinetest.dao.TsReadingQuestionDAO;
 import org.apache.log4j.Logger;
@@ -19,7 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    Logger logger = Logger.getLogger(HomeController.class);
+    private Logger logger = Logger.getLogger(HomeController.class);
     @Autowired
     private TsReadingArticleDAO tsReadingArticleDAO;
     @Autowired

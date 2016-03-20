@@ -6,10 +6,10 @@
 
     <!-- 命名空间 -->
     <typeAliases>
-        <typeAlias type="com.dingup.onlinetest.bean.TsReadingArticle" alias="myTsReadingArticle"></typeAlias>
-        <typeAlias type="com.dingup.onlinetest.bean.TsReadingQuestion" alias="myTsReadingQuestion"></typeAlias>
+        <typeAlias type="com.dingup.onlinetest.bean.reading.TsReadingArticle" alias="myTsReadingArticle"></typeAlias>
+        <typeAlias type="com.dingup.onlinetest.bean.reading.TsReadingQuestion" alias="myTsReadingQuestion"></typeAlias>
         <typeAlias type="com.dingup.onlinetest.enums.ReadingQuestionTypeEnum" alias="myReadingQuestionTypeEnum"></typeAlias>
-        <typeAlias type="com.dingup.onlinetest.bean.ReadingQuestionXml" alias="myReadingQuestionXml"></typeAlias>
+        <typeAlias type="com.dingup.onlinetest.bean.reading.ReadingQuestionXml" alias="myReadingQuestionXml"></typeAlias>
         <!--<typeAlias type="com.aliyun.chaozhan.bean.OriginalUser" alias="myOriginalUserType"></typeAlias>-->
         <!--<typeAlias type="com.aliyun.chaozhan.bean.CallResult" alias="myCallResultType"></typeAlias>-->
         <!--<typeAlias type="com.aliyun.chaozhan.enums.SysUserRoleEnum" alias="mySysUserRoleEnumType"></typeAlias>-->

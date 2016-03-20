@@ -1,5 +1,6 @@
 package com.dingup.onlinetest.module;
 
+import com.dingup.onlinetest.bean.reading.ExamReadingInfo;
 import com.dingup.onlinetest.bean.ExaminationInfo;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -46,6 +47,20 @@ public class SExaminationQueueCache {
     public void addItem(ExaminationInfo examInfo){
         if (!proceedingListMap.containsKey(examInfo.getId())){
             proceedingListMap.put(examInfo.getId(), examInfo);
+        }
+    }
+
+    /**
+     * 获取阅读考试实例部分
+     * @param examId    考试Id
+     * @return
+     */
+    public ExamReadingInfo getExamReadingInfo(String examId){
+        if (proceedingListMap.containsKey(examId)){
+            ExaminationInfo ei = proceedingListMap.get(examId);
+            return ei.getExamReadingInfo();
+        } else {
+            return null;
         }
     }
 }

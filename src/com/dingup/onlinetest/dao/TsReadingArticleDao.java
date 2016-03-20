@@ -1,6 +1,6 @@
 package com.dingup.onlinetest.dao;
 
-import com.dingup.onlinetest.bean.TsReadingArticle;
+import com.dingup.onlinetest.bean.reading.TsReadingArticle;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
@@ -15,11 +15,15 @@ public interface TsReadingArticleDAO {
     boolean update(TsReadingArticle article);
 
     @Delete("DELETE FROM ts_reading_articles WHERE id=#{0}")
-    boolean delete(int id);
+    boolean delete(Integer id);
 
     @Select("SELECT * FROM ts_reading_articles WHERE subject_name=#{0} AND article_num=#{1}")
     @ResultMap("TsReadingArticleTableMap")
-    TsReadingArticle get(String subjectName, int articleNum);
+    TsReadingArticle get(String subjectName, Integer articleNum);
+
+    @Select("SELECT * FROM ts_reading_articles WHERE id=#{0}")
+    @ResultMap("TsReadingArticleTableMap")
+    TsReadingArticle getById(Integer id);
 
     @Select("SELECT * FROM ts_reading_articles WHERE subject_name=#{0}")
     @ResultMap("TsReadingArticleTableMap")
