@@ -9,6 +9,7 @@ import com.dingup.onlinetest.enums.ExamProjectTypeEnum;
 import com.dingup.onlinetest.enums.ExamTypeEnum;
 import com.dingup.onlinetest.module.SExaminationQueueCache;
 import com.dingup.onlinetest.util.HttpResUtil;
+import com.dingup.onlinetest.util.SysUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,28 +42,13 @@ public class ReadingController {
 
 
     @RequestMapping(method= RequestMethod.GET)
-    public String index(ModelMap model){
-        ExaminationInfo ei = new ExaminationInfo();
-        ExamReadingInfo eri = new ExamReadingInfo();
-        String subjectName = "test01";
-        List<TsReadingArticle> articleList = tsReadingArticleDAO.getList(subjectName);
-        Map<Integer, Integer> articleMap = new HashMap<>();
-        articleMap.put(1, articleList.get(0).getId());
-//        articleMap.put(2, articleList.get(1).getId());
-//        articleMap.put(3, articleList.get(2).getId());
-        eri.setArticleMap(articleMap);
-        eri.setAnswerTime(0);
-        eri.setCurProgress("1-1");
-        ei.setExamReadingInfo(eri);
-        ei.setId("ygl_201603161231");
-        ei.setBeginTime((new Date()));
-        ei.setEndTime(null);
-        ei.setExamTypeEnum(ExamTypeEnum.PRACTICE);
-        ei.setCurExamProjectType(ExamProjectTypeEnum.READING);
+    public String index(){
+        return "reading/reading";
+    }
 
-        model.addAttribute("examInfo", ei);
-
-        return "reading";
+    @RequestMapping(value = "/summary", method = RequestMethod.GET)
+    public String summary(){
+        return "reading/summary";
     }
 
     /**
@@ -287,8 +273,8 @@ public class ReadingController {
                 throw new IllegalArgumentException(String.format("parameter error/subject_name:%s", subjectName));
             }
             ExaminationInfo ei = new ExaminationInfo();
-            ei.setId("test_ygl_20160319");
-            ei.setUserId("ygl");
+            ei.setId(SysUtil.genExamId(ExamTypeEnum.PRACTICE, "def"));
+            ei.setUserId("def");
             ei.setExamTypeEnum(ExamTypeEnum.PRACTICE);
             ei.setCurExamProjectType(ExamProjectTypeEnum.READING);
             ei.setBeginTime(new Date());

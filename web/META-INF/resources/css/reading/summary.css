@@ -1,0 +1,82 @@
+/*答案列表页*/
+.ts-result{
+    width: 1200px;
+    margin:30px auto;
+    min-height: 900px;
+    background: #fff;
+    font:14px/1.5 Arial,"Hiragino Sans GB","微软雅黑","Microsoft Yahei";
+    color: #666;
+    padding-bottom: 30px;
+}
+.ts-result .ts-restart{
+    padding: 15px 30px 0;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+}
+.ts-result .ts-restart a{
+    color: #fff;
+    background: #f60;
+    border-radius: 5px;
+    border: 1px solid #f60;
+    font-size: 20px;
+    padding: 10px 20px;
+}
+.ts-result .ts-restart a:hover{
+    color: #fff!important;
+    text-decoration: none;
+}
+.ts-result .ts-result-title{
+    padding: 0 30px;
+    height: 60px;
+}
+.ts-result .ts-result-title .ts-result-one{
+    float: left;
+    font-size: 24px;
+    line-height: 60px;
+}
+.ts-result .ts-result-title .ts-result-two{
+    float: right;
+    font-size: 18px;
+    line-height: 60px;
+    padding-right: 20px;
+}
+.ts-result .ts-result-list{
+    padding: 0 30px;
+}
+.ts-result .ts-result-list .result-list-ul{
+    display: block;
+    list-style: none;
+}
+.ts-result .ts-result-list .result-list-ul li{
+    display: block;
+    border: 1px solid #e7e7e7;
+    line-height: 50px;
+    height: 50px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    margin-bottom:15px;
+    padding:0 10px 0 20px;
+    font-family: arial;
+    font-size: 16px;
+    font-style: italic;
+}
+.ts-result .ts-result-list .result-list-ul li .result-num{
+    padding-right: 20px;
+    float: left;
+}
+.ts-result .ts-result-list .result-list-ul li .result-question{
+    float: left;
+    padding-right: 20px;
+    width: 790px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 100%;
+}
+.ts-result .ts-result-list .result-list-ul li .result-answer{
+    width: 200px;
+    float: right;
+    text-align: right;
+    padding-right: 10px;
+    height: 100%;
+}

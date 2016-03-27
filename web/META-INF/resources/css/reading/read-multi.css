@@ -1,0 +1,95 @@
+/*read 上下结构布局*/
+
+
+/*6选3上面的内容：*/
+.ts-summary-content{
+    padding: 30px 0;
+    line-height: 30px;
+    font-size: 16px;
+}
+/*6选3 7选5  最终答案区 */
+.ts-droplist{
+    width:780px;
+    margin:0 auto;
+}
+
+.ts-droplist .ts-read-drop{
+    width: 780px;
+    height: 50px;
+    border: 1px solid #D2D2D2;
+    background: #FFF none repeat scroll 0% 0%;
+    margin: 0px auto 30px;
+    overflow: hidden;
+    padding: 5px 10px;
+    overflow: auto;
+}
+
+.ts-droplist-table{
+    width: 1200px;
+    margin: 0 auto;
+}
+.ts-droplist-table .ts-read-drop{
+    width: 46%;
+    margin-right: 2%;
+    float: left;
+}
+
+
+/* 以下是答案列表 */
+.ts-read-choices{
+    width: 1200px; /*100%;*/
+    margin: 0px auto;
+    position: relative;
+}
+
+.ts-choices-ul{
+    width: 100%;
+    margin: 0px auto;
+    position: relative;
+}
+.ts-choice-box{
+    float: left;
+    width: 558px;
+    height: 114px;
+    min-height: 78px;
+    border: 1px solid #D2D2D2;
+    background: #FFF none repeat scroll 0% 0%;
+    margin-right: 80px;
+    margin-bottom: 24px;
+}
+.ts-no-right{
+    margin-right: 0px;
+}
+.sort-origin {
+    position: relative;
+    height: 86px;
+    min-height: 50px;
+    overflow: hidden;
+    padding: 12px 50px 16px 10px;
+    display: block;
+    font-size: 16px;
+    line-height: 28px;
+    cursor: move;
+    background: #fff;
+}
+
+.sort-origin i{
+    float: left;
+    display: block;
+}
+.sort-origin p{
+    float: left;
+    width: 470px;
+}
+
+.ts-answer-itemp{
+    display: inline-block;
+}
+.ts-answer-itemp i{
+    float: left;
+    margin-left: 3px;
+    display: block;
+}
+.ts-answer-itemp p{
+    margin-left: 25px;
+}

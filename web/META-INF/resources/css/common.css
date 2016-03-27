@@ -1,0 +1,132 @@
+body,html{margin:0;padding:0;color:#333}
+.ts-read-html{background: url(../img/view-body.png) top center repeat-y;}
+body{font:14px/1.5 Arial,"Hiragino Sans GB","微软雅黑","Microsoft Yahei";*font:14px/1.5 "微软雅黑","Microsoft Yahei";
+    background: #f1f1f1;}
+address,article,aside,b,caption,cite,code,dd,del,details,div,dl,dt,em,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,i,input,legend,li,nav,ol,p,pre,section,select,strong,summary,table,tbody,td,textarea,tfoot,th,thead,ul{margin:0;padding:0;font-size:100%;font-style:normal;font-weight:400;word-wrap:break-word;outline:0}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block}
+table{border-collapse:collapse;table-layout:fixed}
+li{list-style:none}
+img{border:0}
+input,select,textarea{background:#fff;font-family:inherit;resize:none}
+a{color:#333;text-decoration:none;outline:0}
+a:hover{color:#419cff;text-decoration:none}
+.clearfix{*zoom:1}
+.clearfix:after{content:"";height:0;overflow:hidden;clear:both;display:block;visibility:hidden}
+.ts-f12{font-size: 12px!important;}
+.ts-f14{font-size: 14px!important;}
+.ts-f16{font-size: 16px!important;}
+.ts-f18{font-size: 18px!important;}
+.ts-f20{font-size: 20px!important;}
+.ts-f24{font-size: 24px!important;}
+.ts-f28{font-size: 28px!important;}
+.ts-f30{font-size: 30px!important;}
+.ts-f32{font-size: 32px!important;}
+.ts-hide{display: none!important;}
+.ts-show{display: block!important;}
+.ts-align-center{text-align: center;}
+.ts-color-red{color: #f00;}
+.ts-color-green{color: #7dc97d;}
+.ts-color-default{color:#333;}
+.ts-pl1{padding-left: 4px;}
+.ts-pr1{padding-right: 4px;}
+.ts-button{
+    background: #d7d7d7;
+    color: #666;
+    padding: 5px 10px;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
+}
+.topschool-main{position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    min-width: 1200px;
+    /*overflow: hidden;*/
+}
+/*头部样式*/
+.topschool-s-header{
+    position: relative;
+    height: 130px;
+    padding: 0 20px;
+    background-color: #660019;
+    background-image: url(../img/examheader.jpg) repeat-y;
+    background-image: -webkit-linear-gradient(right,#650019 0,#002f67 100%);
+    background-image: -moz-linear-gradient(right,#650019 0,#002f67 100%);
+    background-image: -ms-linear-gradient(right,#650019 0,#002f67 100%);
+    background-image: -o-linear-gradient(right,#650019 0,#002f67 100%);
+    background-image: linear-gradient(right,#650019 0,#002f67 100%);
+}
+.topschool-s-header .head-sign{
+    padding-top: 30px;
+}
+.topschool-s-header .head-sign .logo{
+    width: 145px;
+    height: 59px;
+    overflow: hidden;
+    float: left;
+    display: block;
+    text-indent: -1000px;
+    background: url(http://www.topschool.com/img/dingupweb/dingup-logo.png) no-repeat;
+}
+.topschool-s-header .head-sign .tpo-title {
+    float: left;
+    padding-top: 10px;
+    color: #e0e0e0;
+    font-size: 24px;
+}
+.head-operation{
+    position: absolute;
+    bottom: 13px;
+    right: 20px;
+}
+.operation-btn-list{
+    padding-bottom: 8px;
+}
+.operation-btn-list li {
+    float: left;
+    margin-right: 8px;
+}
+.topschool-s-header .btn-total {/*btn-exam*/
+    width: 82px;
+    height: 60px;
+    overflow: hidden;
+    background: url(../img/exam_buttons.png) no-repeat;
+    display: block;
+    cursor: pointer;
+    text-indent: -1000px;
+}
+.topschool-s-header .btn-viewtext{width:110px;height:52px;margin: 5px 30px 0 0;background-position:0 -352px}
+.topschool-s-header .btn-viewtext:hover{background-position:-119px -352px}
+.topschool-s-header .btn-viewtext:active{background-position:-240px -352px}
+.topschool-s-header .btn-viewtext-disabled,.topschool-s-header .btn-viewtext-disabled:active,.topschool-s-header .btn-viewtext-disabled:hover{background-position:-355px -352px;cursor:default}
+
+.topschool-s-header .btn-review{background-position:-183px -284px}
+.topschool-s-header .btn-review:hover{background-position:-90px -284px}
+.topschool-s-header .btn-review:active{background-position:0 -284px}
+.topschool-s-header .btn-review-disabled,.topschool-s-header .btn-review-disabled:active,.topschool-s-header .btn-review-disabled:hover{background-position:-273px -284px;cursor:default}
+
+.topschool-s-header .btn-back{background-position:-183px -142px}
+.topschool-s-header .btn-back:hover{background-position:-90px -142px}
+.topschool-s-header .btn-back:active{background-position:0 -142px}
+.topschool-s-header .btn-back-disabled,.topschool-s-header .btn-back-disabled:active,.topschool-s-header .btn-back-disabled:hover{background-position:-273px -142px;cursor:default}
+
+.topschool-s-header .btn-next{background-position:-183px -72px}
+.topschool-s-header .btn-next:hover{background-position:-90px -72px}
+.topschool-s-header .btn-next:active{background-position:0 -72px}
+.topschool-s-header .btn-next-disabled,.topschool-s-header .btn-next-disabled:active,.topschool-s-header .btn-next-disabled:hover{background-position:-273px -72px;cursor:default}
+
+.topschool-s-header .duration-time{padding-right:8px;height:35px;overflow:hidden;text-align:right;color:#fff}
+.topschool-s-header .btn-showtime{width:102px;height:35px;padding-right:2px;margin-left:10px;background-position:0 -468px;display:inline-block;text-align:center;vertical-align:middle;color:#333;text-indent:0;line-height:32px}
+.topschool-s-header .btn-showtime:hover{background-position:-119px -468px;color:#333;text-decoration:none}
+.topschool-s-header .btn-showtime:active{background-position:-240px -468px}
+
+.topschool-s-header .header-practice-title{position:absolute;left:50%;bottom:10px;width:400px;margin-left:-200px;margin-bottom:0;text-align:center}
+.topschool-s-header .header-practice-title .title-text{background:0 0;color:#fff;white-space:nowrap;font-size:20px}
+
+/* 下面的内容大样式 */
+.topschool-view-wrapper{width:100%;/*overflow:hidden;*/margin:0 auto;
+    position:absolute;left:0;right:0;top:160px;bottom:30px;}
+.view-text-content{width:1200px;margin:0 auto;height:100%;/*overflow:hidden*/}
+

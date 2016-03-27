@@ -35,9 +35,7 @@ public class XmlUtil {
                         && answerEle != null
                         && !answerEle.getText().isEmpty()
                         && tipEle != null
-                        && explEle != null
-                        && optionsEle != null
-                        && optionsEle.elements().size() > 0){
+                        && explEle != null){
 
                     ret = new ReadingQuestionXml();
                     ret.setTitle(titleEle.getText());
@@ -47,6 +45,8 @@ public class XmlUtil {
                     ret.setExpl(explEle.getText());
                     if (optionsEle != null) {
                         ret.setOptions(getOptionList(optionsEle.elements()));
+                    } else {
+                        ret.setOptions(new HashMap<String, String>());
                     }
                 }
             } catch (Exception e) {
