@@ -8,7 +8,7 @@
     <!-- dataSource定义 -->
     <bean id="ds_dingup_online_test" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
           p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://123.57.163.18:3306/dingup_online_test?useUnicode=true&amp;characterEncoding=UTF-8"
+          p:url="jdbc:mysql://rdsua8982hr4nnvho1mwo.mysql.rds.aliyuncs.com:3306/ts_online_test?useUnicode=true&amp;characterEncoding=UTF-8"
           p:username="onlinetestuser"
           p:password="DingupOnlineTest_user160303"
           p:initialSize="1"

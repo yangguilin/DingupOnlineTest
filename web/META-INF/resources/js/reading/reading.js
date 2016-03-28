@@ -1,9 +1,5 @@
-var subjectName = $("input[name='sname']").val() ;//套题名称
-var articleid = $("input[name='aid']").val() ;//文章id（一套题里 有好几个文章）
 var isfirstLoad =$("input[name='firstLoad']").val(); //true－-是否第一次加载这个文章（一个阅读有好几个文章）
-// var questionNum = $("input[name='qnum']").val(); //第几题，第一题的话back无法点击，默认1
-// var articleJson = '',articleTitle='' ;//从数据库中得到的文章（包含标签的）；文章标题
-// var qaList = []; //问题列表
+
 var tags = /<[^>]*>/g; //<开头，>结尾
 var q_tag = /<[\/]?[q_][^>]*>/g; //q标签：<q_xxx>,</q_xxx>
 var q_tag_begin = /<[q_][^>]*>/g;//<q_xx_type>
@@ -12,11 +8,8 @@ var p_tag = /<[\/]?[p][0-9]{1,}>/g; //p标签
 var p_tag_begin = /<[p][0-9]{1,}>/g; //p标签，<pxx>－空格替换；
 var p_tag_end = /<[\/]{1}[p][0-9]{1,}>/g; //</pxx>－换行
 
-
-
-
+//url参数访问的格式：xxxx?sn=test01&an=1
 var read = function(){
-    // this.subjectName = $("input[name='sname']").val(); //套题的名称
     this.left_ques_title = $('.J_question_title'); //左侧题目
     this.left_ques_answers = $('.J_answers'); //左侧答案
     this.left_ques_tips = $('.J_ques_tips'); //左侧答案下面的提示语句
@@ -30,11 +23,13 @@ var read = function(){
         multiple :'multiple',
         summary :'summary'
     };
+    this.subjectName = $("input[name='sname']").val() ;//套题名称
+    this.articleid = $("input[name='aid']").val() ;//文章id（一套题里 有好几个文章）
     this.articleTitle = ''; //文章标题
     this.orgArticleJson = ''; //数据库中的文章内容
     this.qaList = []; //问题列表
     this.questionNum = $("input[name='qnum']").val(); //第几题，第一题的话back无法点击，默认1
-    this.examination_id = 'test_ygl_20160319'; //开始考试的标志，保存答案时用
+    this.examination_id = ''; //开始考试的标志，保存答案时用 test_ygl_20160319
     this.init();
 }
 
@@ -51,23 +46,47 @@ var read = function(){
  */
 read.prototype={
     init:function(){
+        this.setDefaultParam();
+        $('.J_sub_name').html(this.subjectName);
         this.events();
-        if(isfirstLoad=='true' && articleid == 1){ //一次考试才写
+        if(isfirstLoad=='true' && this.articleid == 1){ //一次考试才写
             this.setStartExam();
         }
 
         if(isfirstLoad=="true"){ //第一次加载这个文章
-            this.loadArticleWithoutTags(subjectName,articleid);
+            this.loadArticleWithoutTags(this.subjectName,this.articleid);
 
-            this.loadAllQAS(subjectName,articleid);
+            this.loadAllQAS(this.subjectName,this.articleid);
 
             $("input[name='firstLoad']").val('false'); //是否第一次加载文章
-
         }else{
-            //最后一题时，点击next要设置firstLoad＝true
+
 
         }
 
+    },
+    setDefaultParam:function(){ //给固定的参数设置值
+        //subject_name='+subName+'&article_num='+aid &qnum
+        //isfirstload 根据url中的什么来判断呢？
+        // sn=套题名称 an=文章id  －－目前只用这两个参数
+        //先不做－根据题目id加载对应的题目  qn=题目id
+        var that = this;
+
+        var sn = that.getQueryString('sn');
+        if(sn!=null){
+            that.subjectName = sn;
+        }
+        var an = that.getQueryString('an');
+        if(an!=null){
+            that.articleid = an;
+        }
+
+    },
+    getQueryString:function(name){ //处理url地址后的参数
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
     },
     events:function(){
         var that = this;
@@ -80,6 +99,13 @@ read.prototype={
         $('.J_view_right').scroll(function(){ //右侧文章div滚动时，判断是否到过底部
             that.setReadArticleFirst();
         });
+        //$('.J_first_dialog').dialog({
+        //    autoOpen: false,
+        //    show: {
+        //        effect: "blind",
+        //        duration: 100
+        //    }
+        //});
     },
     loadArticleWithoutTags:function(subName,aid){//根据套题名称，文章id获取 文章
         var that = this;
@@ -282,12 +308,18 @@ read.prototype={
                 $('.J_final_answer').removeClass('ts-droplist-table');
             }
 
+
             var tempFinal = [];
             for(var k =0;k<tempRight;k++){
-                tempFinal.push('<li class="ts-read-drop J_droppable">\
-              <input type="hidden" name="ts-answer-drop" value="">\
-              <p class="ts-answer-itemp"></p>\
-            </li>');
+                if(k%2==0){
+                    tempFinal.push('<li class="ts-read-drop J_droppable">');
+                }else{
+                    tempFinal.push('<li class="ts-read-drop J_droppable ts-no-right">');
+                }
+
+                tempFinal.push('<input type="hidden" name="ts-answer-drop" value="">\
+                  <p class="ts-answer-itemp"></p>\
+                </li>');
             }
             $('.J_final_answer').html(tempFinal.join(''));
 
@@ -304,43 +336,47 @@ read.prototype={
             $('.J_choices_answer').html(allChoices.join(''));
 
             //js效果
-            $(".J_drag_box").draggable({
-                revert: 'invalid',
-                cursor:'move',
-                // helper: 'clone',
-                // connectToSortable: 'li.J_droppable'
-            });
-
-            $('.J_droppable').click(function(e){
-                var sn = $(this).find('input:hidden').val();
-                if(sn.length>0){ //点击的是3个div中有答案的
-
-                    $('.J_drag_box').each(function(){
-                        var dv = $(this).attr('data-value');
-                        if(dv == sn){
-                            $(this).removeClass('ts-hide');
-                        }
-                    });
-                    $(this).find('input:hidden').val('');
-                    $(this).droppable('enable').find('.ts-answer-itemp').html('');
-                }
-
-            }).droppable({
-                drop:function(event,ui){
-                    var sn = $(ui.draggable).attr('data-value');
-                    $(this).find('input:hidden').val(sn);
-                    $(ui.draggable).addClass('ts-hide').animate({
-                        "left": 0,
-                        "top": 0
-                    });//.hide();
-                    $(this).find('.ts-answer-itemp').html($(ui.draggable).html());
-                    $(this).droppable('disable');
-                    //设置成不可用的disable是为了避免 当已经有选项时，其它选项拖拽到当前位置时，覆盖之前的选项内容
-                }
-            });
+            that.setDropDraggle();
 
         }
 
+    },
+    setDropDraggle:function(){ //6选3 summary 题型的拖拽效果
+        //js效果
+        $(".J_drag_box").draggable({
+            revert: 'invalid',
+            cursor:'move',
+            // helper: 'clone',
+            // connectToSortable: 'li.J_droppable'
+        });
+
+        $('.J_droppable').click(function(e){
+            var sn = $(this).find('input:hidden').val();
+            if(sn.length>0){ //点击的是3个div中有答案的
+
+                $('.J_drag_box').each(function(){
+                    var dv = $(this).attr('data-value');
+                    if(dv == sn){
+                        $(this).removeClass('ts-hide');
+                    }
+                });
+                $(this).find('input:hidden').val('');
+                $(this).droppable('enable').find('.ts-answer-itemp').html('');
+            }
+
+        }).droppable({
+            drop:function(event,ui){
+                var sn = $(ui.draggable).attr('data-value');
+                $(this).find('input:hidden').val(sn);
+                $(ui.draggable).addClass('ts-hide').animate({
+                    "left": 0,
+                    "top": 0
+                });//.hide();
+                $(this).find('.ts-answer-itemp').html($(ui.draggable).html());
+                $(this).droppable('disable');
+                //设置成不可用的disable是为了避免 当已经有选项时，其它选项拖拽到当前位置时，覆盖之前的选项内容
+            }
+        });
     },
     setAnswersRadio:function(obj,key){//加载radio类型的答案选项
         var tpA = [];
@@ -426,10 +462,14 @@ read.prototype={
         var that = this;
 
         if(isfirstLoad){
-            alert('请先阅读完所有内容');
-
+            //alert('');//读完文章
+            alert('You should use the scroll bar to read the whole passage before you begin to answer the question. However, the passage will appear again with each question.');
+            //$('.J_first_dialog').dialog({height: 140,
+            //    modal: true});
+            $('.J_ques_num_info').addClass('ts-hide');
         }else{
             $('.J_view_left').removeClass('ts-hide');
+            $('.J_ques_num_info').removeClass('ts-hide');
 
             //保存答案
             var curQuesNum = Number(that.questionNum); //下一个加载的是第几题，从0开始， 0表示首次加载文章；1表示加载第一题
@@ -449,8 +489,7 @@ read.prototype={
 
             }else{
                 //加载另一个文章
-                alert('已全部完成');
-                return;
+                window.location.href='/reading/summary';
             }
             $('.J_cur_Num').html(that.questionNum);
             that.questionNum = curQuesNum + 1; //测试第6题  15; //
@@ -528,7 +567,7 @@ read.prototype={
     setStartExam:function(){ //设置 开始考试
         var that = this;
         var start = 'http://ibt.topschool.com/reading/start_exam.do';
-        var param = 'subject_name='+subjectName;
+        var param = 'subject_name='+that.subjectName;
         $.ajax({
             url:start,
             dataType:'jsonp',
@@ -548,30 +587,8 @@ read.prototype={
     },
     seeYourAnswer:function(){ //查看答案
         window.location.href = 'summary.html';
-        // var that =this;
-        // var start = 'http://ibt.topschool.com/reading/get_summary_info.do';
-        // $.ajax({
-        //   url:start,
-        //   dataType:'jsonp',
-        //   jsonp:'callback',
-        //   data:'examination_id='+that.examination_id,
-        //   success:function(data){
-        //     debugger;
-        //   },
-        //   error:function(data){
-        //     debugger;
-        //   }
-        // });
+
     },
-    setPageToeflInfo:function(atitle,acontent,question,answer){
-        var that = this;
-        //右侧
-        that.right_a_content.html(acontent);
-        var contHeight = $('.J_view_right').eq(0).scrollHeight;
-        var locationTop = $('.J_scrollto').eq(0).offset().top;
-        var totalTop = locationTop-250;
-        $('.J_view_right').scrollTop(totalTop);
-    }
 
 }
 

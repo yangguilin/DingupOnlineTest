@@ -20,7 +20,7 @@
     background: #FFF none repeat scroll 0% 0%;
     margin: 0px auto 30px;
     overflow: hidden;
-    padding: 5px 10px;
+    padding: 5px 1%;
     overflow: auto;
 }
 
@@ -49,16 +49,16 @@
 }
 .ts-choice-box{
     float: left;
-    width: 558px;
+    width: 48%;
     height: 114px;
     min-height: 78px;
     border: 1px solid #D2D2D2;
     background: #FFF none repeat scroll 0% 0%;
-    margin-right: 80px;
+    margin-right: 2%;
     margin-bottom: 24px;
 }
 .ts-no-right{
-    margin-right: 0px;
+    margin-right: 0!important;
 }
 .sort-origin {
     position: relative;

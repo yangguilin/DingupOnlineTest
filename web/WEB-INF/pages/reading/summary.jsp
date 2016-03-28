@@ -17,7 +17,7 @@
 <div class="topschool-main">
     <div class="ts-result">
         <div class="ts-restart clearfix">
-            <a href="/reading" target="_blank">重新做题</a>
+            <a href="/reading">重新做题</a>
         </div>
         <div class="ts-result-title clearfix">
             <span class="ts-result-one">Question</span>
@@ -29,7 +29,7 @@
         </div>
     </div>
 </div>
-<script src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(function(){
         function seeYourAnswer(exam_id){
@@ -80,7 +80,6 @@
                     $('.J_list').html(list.join(''));
                 },
                 error:function(data){
-                    debugger;
                     alert('统计答案接口调用错误error');
                 }
             });
