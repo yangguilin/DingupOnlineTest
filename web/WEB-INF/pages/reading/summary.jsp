@@ -30,62 +30,6 @@
     </div>
 </div>
 <script src="/js/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(function(){
-        function seeYourAnswer(exam_id){
-            var start = 'http://ibt.topschool.com/reading/get_summary_info.do';
-            $.ajax({
-                url:start,
-                dataType:'jsonp',
-                jsonp:'callback',
-                data:'examination_id='+exam_id,
-                success:function(data){
-                    var list = [];
-                    try{
-                        if(data.code == 200 && typeof(data.result)!='undefined'){
-                            var dr = data.result;
-                            for(var i=0;i<dr.length;i++){
-                                var item = dr[i];
-                                list.push('<li class="clearfix">\
-                                <span class="result-num"></span>\
-                                <span class="result-question">Article '+ item.articleNum +'</span>\
-                              </li>');
-                                var ansList = item.answerInfoList;
-                                for(var j=0;j<ansList.length;j++){
-                                    var tempAns = ansList[j];
-                                    list.push('<li class="clearfix">\
-                                <span class="result-num">'+ Number(j+1) +'</span>\
-                                <span class="result-question">'+ tempAns.questionTitle +'</span>\
-                                <span class="result-answer">');
-                                    var yourAns = tempAns.studentAnswer.toUpperCase();
-                                    var corrAns = tempAns.correctAnswer.toUpperCase();
-                                    if(yourAns == "UNDEFINED"){
-                                        yourAns = '－' ;
-                                    }
-                                    if(yourAns == corrAns){
-                                        list.push('<span class="ts-color-green ts-pr1">'+yourAns+'</span>');
-                                    }else{
-                                        list.push('<span class="ts-color-red ts-pr1">'+ yourAns +'</span>');
-                                    }
-                                    list.push('/<span class="ts-color-default ts-pl1">'+ corrAns +'</span>');
-                                    list.push('</span>\
-                              </li>');
-                                }
-                            }
-                        }else{
-                            alert('统计答案出错')
-                        }
-                    }
-                    catch(e){}
-                    $('.J_list').html(list.join(''));
-                },
-                error:function(data){
-                    alert('统计答案接口调用错误error');
-                }
-            });
-        }
-        seeYourAnswer('test_ygl_20160319');
-    });
-</script>
+<script src="/js/reading/summary.js" type="text/javascript"></script>
 </body>
 </html>

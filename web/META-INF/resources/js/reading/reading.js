@@ -109,7 +109,7 @@ read.prototype={
     },
     loadArticleWithoutTags:function(subName,aid){//根据套题名称，文章id获取 文章
         var that = this;
-        var start = 'http://ibt.topschool.com/reading/get_article.do';
+        var start = '/reading/get_article.do';
         $.ajax({
             url:start,
             dataType:'jsonp',
@@ -438,7 +438,7 @@ read.prototype={
     loadAllQAS:function(subName,aid){ //根据套题名称，文章id获取这篇文章的所有问题
         var that = this;
 
-        var start = 'http://ibt.topschool.com/reading/get_questions.do';
+        var start = '/reading/get_questions.do';
         $.ajax({
             url:start,
             dataType:'jsonp',
@@ -489,7 +489,7 @@ read.prototype={
 
             }else{
                 //加载另一个文章
-                window.location.href='/reading/summary';
+                window.location.href='/reading/summary?examid='+that.examination_id;
             }
             $('.J_cur_Num').html(that.questionNum);
             that.questionNum = curQuesNum + 1; //测试第6题  15; //
@@ -544,7 +544,7 @@ read.prototype={
             selAnswer = $('input[name="ts-answer"]:checked').val();
         }
 
-        var start = 'http://ibt.topschool.com/reading/save_answer.do';
+        var start = '/reading/save_answer.do';
         var param = 'subject_name='+curQuesAnswer["subjectName"]+'&article_num='+curQuesAnswer["articleNum"]+'&question_num='+curQuesAnswer["questionNum"]+'&examination_id='+that.examination_id+'&answer='+selAnswer;
         $.ajax({
             url:start,
@@ -566,7 +566,7 @@ read.prototype={
     },
     setStartExam:function(){ //设置 开始考试
         var that = this;
-        var start = 'http://ibt.topschool.com/reading/start_exam.do';
+        var start = '/reading/start_exam.do';
         var param = 'subject_name='+that.subjectName;
         $.ajax({
             url:start,

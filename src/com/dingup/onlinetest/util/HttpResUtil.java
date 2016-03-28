@@ -14,7 +14,7 @@ public class HttpResUtil {
     /**
      * 全局可调节的是否支持JSONP开关
      */
-    private static Boolean ENABLE_JSONP_REQUEST = false;
+    private static Boolean ENABLE_JSONP_REQUEST = true;
     /**
      * content内容类型
      */
