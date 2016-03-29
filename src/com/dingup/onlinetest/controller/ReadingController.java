@@ -57,7 +57,7 @@ public class ReadingController {
      * @param articleNum    文章序号
      * @param response  response
      */
-    @RequestMapping(value = "/get_article.do", method=RequestMethod.GET)
+    @RequestMapping(value = "/get_article.do", method=RequestMethod.POST)
     public void getArticle(@RequestParam(REQUEST_PARAMETER_SUBJECT_NAME) String subjectName,
                            @RequestParam(REQUEST_PARAMETER_ARTICLE_NUM) Integer articleNum,
                            HttpServletRequest request,
@@ -92,7 +92,7 @@ public class ReadingController {
      * @param questionNum   问题序号
      * @param response  response
      */
-    @RequestMapping(value = "/get_question.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_question.do", method = RequestMethod.POST)
     public void getQuestion(@RequestParam(REQUEST_PARAMETER_SUBJECT_NAME) String subjectName,
                             @RequestParam(REQUEST_PARAMETER_ARTICLE_NUM) Integer articleNum,
                             @RequestParam(REQUEST_PARAMETER_QUESTION_NUM) Integer questionNum,
@@ -128,7 +128,7 @@ public class ReadingController {
      * @param articleNum    文章序号
      * @param response  response
      */
-    @RequestMapping(value = "/get_questions.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_questions.do", method = RequestMethod.POST)
     public void getQuestions(@RequestParam(REQUEST_PARAMETER_SUBJECT_NAME) String subjectName,
                              @RequestParam(REQUEST_PARAMETER_ARTICLE_NUM) Integer articleNum,
                              HttpServletRequest request,
@@ -165,7 +165,7 @@ public class ReadingController {
      * @param answer    答案:a,b
      * @param response  response
      */
-    @RequestMapping(value = "/save_answer.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/save_answer.do", method = RequestMethod.POST)
     public void saveAnswer(@RequestParam(REQUEST_PARAMETER_EXAMINATION_ID) String examinationId,
                            @RequestParam(REQUEST_PARAMETER_SUBJECT_NAME) String subjectName,
                            @RequestParam(REQUEST_PARAMETER_ARTICLE_NUM) Integer articleNum,
@@ -208,7 +208,7 @@ public class ReadingController {
      * @param examinationId 考试ID
      * @param response  response
      */
-    @RequestMapping(value = "/get_summary_info.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_summary_info.do", method = RequestMethod.POST)
     public void getSummaryInfo(@RequestParam(REQUEST_PARAMETER_EXAMINATION_ID) String examinationId,
                                HttpServletRequest request,
                                HttpServletResponse response){
@@ -263,7 +263,7 @@ public class ReadingController {
      * @param subjectName   套题名称
      * @param response  response
      */
-    @RequestMapping(value = "/start_exam.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/start_exam.do", method = RequestMethod.POST)
     public void startExam(@RequestParam(REQUEST_PARAMETER_SUBJECT_NAME) String subjectName,
                           HttpServletRequest request,
                           HttpServletResponse response){

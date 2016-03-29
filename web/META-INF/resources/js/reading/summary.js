@@ -13,8 +13,8 @@ $(function(){
                 var start = '/reading/get_summary_info.do';
                 $.ajax({
                     url: start,
-                    dataType: 'jsonp',
-                    jsonp: 'callback',
+                    dataType:'json',
+                    type:'post',
                     data: 'examination_id=' + exam_id,
                     success: function (data) {
                         var list = [];

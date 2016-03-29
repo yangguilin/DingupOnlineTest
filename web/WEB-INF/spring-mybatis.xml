@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <!-- dataSource定义 -->
+    <!-- dataSource定义 外网-->
     <bean id="ds_dingup_online_test" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
           p:driverClassName="com.mysql.jdbc.Driver"
           p:url="jdbc:mysql://rdsua8982hr4nnvho1mwo.mysql.rds.aliyuncs.com:3306/ts_online_test?useUnicode=true&amp;characterEncoding=UTF-8"
@@ -14,6 +14,16 @@
           p:initialSize="1"
           p:maxIdle="2"
           p:minIdle="1"/>
+
+    <!-- dataSource定义 内网-->
+    <!--<bean id="ds_dingup_online_test" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+          <!--p:driverClassName="com.mysql.jdbc.Driver"-->
+          <!--p:url="jdbc:mysql://rdsua8982hr4nnvho1mw.mysql.rds.aliyuncs.com:3306/ts_online_test?useUnicode=true&amp;characterEncoding=UTF-8"-->
+          <!--p:username="onlinetestuser"-->
+          <!--p:password="DingupOnlineTest_user160303"-->
+          <!--p:initialSize="1"-->
+          <!--p:maxIdle="2"-->
+          <!--p:minIdle="1"/>-->
 
     <!-- mybatis文件配置，扫描所有mapper文件 -->
     <!-- configLocation为mybatis属性 mapperLocations为所有mapper-->

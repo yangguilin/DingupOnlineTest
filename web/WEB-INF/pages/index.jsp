@@ -9,10 +9,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
   <head>
-    <title>1231231</title>
+    <title>顶上教育 - 在线模考系统</title>
 
   </head>
   <body>
-    ${msg}
+    <span>欢迎来到顶上教育,网站建设中,敬请期待...</span>
   </body>
 </html>

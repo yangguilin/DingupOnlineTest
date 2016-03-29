@@ -29,7 +29,7 @@ var read = function(){
     this.orgArticleJson = ''; //数据库中的文章内容
     this.qaList = []; //问题列表
     this.questionNum = $("input[name='qnum']").val(); //第几题，第一题的话back无法点击，默认1
-    this.examination_id = ''; //开始考试的标志，保存答案时用 test_ygl_20160319
+    this.examination_id = ''; //开始考试的标志，保存答案时用
     this.init();
 }
 
@@ -80,7 +80,6 @@ read.prototype={
         if(an!=null){
             that.articleid = an;
         }
-
     },
     getQueryString:function(name){ //处理url地址后的参数
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -99,21 +98,14 @@ read.prototype={
         $('.J_view_right').scroll(function(){ //右侧文章div滚动时，判断是否到过底部
             that.setReadArticleFirst();
         });
-        //$('.J_first_dialog').dialog({
-        //    autoOpen: false,
-        //    show: {
-        //        effect: "blind",
-        //        duration: 100
-        //    }
-        //});
     },
     loadArticleWithoutTags:function(subName,aid){//根据套题名称，文章id获取 文章
         var that = this;
         var start = '/reading/get_article.do';
         $.ajax({
             url:start,
-            dataType:'jsonp',
-            jsonp:'callback',
+            dataType:'json',
+            type:'post',
             data:'subject_name='+subName+'&article_num='+aid,
             success:function(data){
 
@@ -441,8 +433,8 @@ read.prototype={
         var start = '/reading/get_questions.do';
         $.ajax({
             url:start,
-            dataType:'jsonp',
-            jsonp:'callback',
+            dataType:'json',
+            type:'post',
             data:'subject_name='+subName+'&article_num='+aid,
             success:function(data){
                 if(data.code == 200 && typeof(data.result)!='undefined'){
@@ -548,8 +540,8 @@ read.prototype={
         var param = 'subject_name='+curQuesAnswer["subjectName"]+'&article_num='+curQuesAnswer["articleNum"]+'&question_num='+curQuesAnswer["questionNum"]+'&examination_id='+that.examination_id+'&answer='+selAnswer;
         $.ajax({
             url:start,
-            dataType:'jsonp',
-            jsonp:'callback',
+            dataType:'json',
+            type:'post',
             data:param,
             success:function(data){
                 //code: 200, message: "答案保存成功", result: true
@@ -570,8 +562,8 @@ read.prototype={
         var param = 'subject_name='+that.subjectName;
         $.ajax({
             url:start,
-            dataType:'jsonp',
-            jsonp:'callback',
+            dataType:'json',
+            type:'post',
             data:param,
             success:function(data){
                 if(data.code == 200 && typeof(data.result)!='undefined'){
@@ -587,10 +579,7 @@ read.prototype={
     },
     seeYourAnswer:function(){ //查看答案
         window.location.href = 'summary.html';
-
     },
-
 }
-
 
 window.reading = new read();

@@ -88,7 +88,7 @@
     <p>
     </p>
 </div>
-<script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/jquery.1.11.3.min.js" type="text/javascript"></script>
 <script src="/js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="/js/reading/reading.js" type="text/javascript"></script>
 </body>
